@@ -1,11 +1,11 @@
 def solution(clothes):
-    '''
+    """
     Args:
         clothes: 의상의 이름들과 의상의 종류 (2차원 리스트)
     
     Returns:
         (int): 입을 수 있는 의상의 모든 경우의 수
-    '''
+    """
     
     clothes_dict = {}
     answer = 1
