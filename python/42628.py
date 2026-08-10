@@ -3,42 +3,46 @@ import heapq
 def solution(operations):
     min_heap = []
     max_heap = []
-    valid  = {}
-    idx = 0
     
-    for op in operations:
-        cmd, num = op.split()
-        num = int(num)
+    valid = [False] * len(operations)
+    
+    for index, operation in enumerate(operations):
+        command, value = operation.split()
+        value = int(value)
         
-        if cmd == 'I':
-            heapq.heappush(min_heap, (num, idx))
-            heapq.heappush(max_heap, (-num, idx))
-            valid[idx] = True
-            idx += 1
+        if command == "I":
+            heapq.heappush(min_heap, (value, index))
+            heapq.heappush(max_heap, (-value, index))
+            valid[index] = True
             
-        elif num == 1:
-            while max_heap and not valid.get(max_heap[0][1], False):
-                heapq.heappop(max_heap)
-            if max_heap:
-                _, i = heapq.heappop(max_heap)
-                valid[i] = False
-                
         else:
-            while min_heap and not valid.get(min_heap[0][1], False):
-                heapq.heappop(min_heap)
-                
-            if min_heap:
-                _, i = heapq.heappop(min_heap)
-                valid[i] = False
+            if value == 1:
+                # 최대 힙에서 이미 삭제된 원소를 제거
+                while max_heap and not valid[max_heap[0][1]]:
+                    heapq.heappop(max_heap)
                     
-    while min_heap and not valid.get(min_heap[0][1], False):
+                if max_heap:
+                    _, target_index = heapq.heappop(max_heap)
+                    valid[target_index] = False
+                    
+            else:
+                # 최소 힙에서 이미 삭제된 원소를 제거
+                while min_heap and not valid[min_heap[0][1]]:
+                    heapq.heappop(min_heap)
+                    
+                if min_heap:
+                    _, target_index = heapq.heappop(min_heap)
+                    valid[target_index] = False
+                    
+    # 마지막으로 무효 원소를 정리
+    while min_heap and not valid[min_heap[0][1]]:
         heapq.heappop(min_heap)
         
-    while max_heap and not valid.get(max_heap[0][1], False):
+    while max_heap and not valid[max_heap[0][1]]:
         heapq.heappop(max_heap)
         
-    if not min_heap or not max_heap:
+    if not min_heap:
         return [0, 0]
     
     return [-max_heap[0][0], min_heap[0][0]]
-            
+                    
