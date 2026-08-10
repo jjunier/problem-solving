@@ -1,6 +1,14 @@
 import heapq
 
 def solution(operations):
+    """
+    Args:
+        operations(List): 이중 우선 순위 큐가 진행할 연산이 담긴 리스트
+
+    Returns:
+        (List): 모든 연산을 처리한 큐의 최댓값과 최솟값이 담긴 리스트
+                (큐가 빈 경우 0, 0으로 반환)
+    """
     min_heap = []
     max_heap = []
     
