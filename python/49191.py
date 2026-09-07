@@ -1,4 +1,12 @@
 def solution(n, results):
+    """
+    Args:
+        n(Int): 권투 대회에 참여하는 권투 선수의 수
+        result(Matrix): 각 권투 선수의 번호로 표현해 승패가 담긴 이차원 리스트
+
+    Returns:
+        (Int): 정확하게 순위를 매길 수 있는 선수의 수
+    """
     win = [[False] * (n + 1) for _ in range(n + 1)]
     
     for winner, loser in results:
