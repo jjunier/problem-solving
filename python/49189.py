@@ -1,5 +1,21 @@
 from collections import deque
 
+def bfs(graph, start, n):
+    distance = [-1] * (n + 1)
+    distance[start] = 0
+    
+    queue = deque([start])
+    
+    while queue:
+        current = queue.popleft()
+        
+        for next_node in graph[current]:
+            if distance[next_node] == -1:
+                distance[next_node] = distance[current] + 1
+                queue.append(next_node)
+
+    return distance
+
 def solution(n, vertex):
     """
     Args:
@@ -14,19 +30,8 @@ def solution(n, vertex):
     for a, b in vertex:
         graph[a].append(b)
         graph[b].append(a)
-        
-    distance = [-1] * (n + 1)
-    distance[1] = 0
-    
-    queue = deque([1])
-    
-    while queue:
-        current = queue.popleft()
-        
-        for next_node in graph[current]:
-            if distance[next_node] == -1:
-                distance[next_node] = distance[current] + 1
-                queue.append(next_node)
+
+    distance = bfs(graph, 1, n)
                 
     max_distance = max(distance)
     
