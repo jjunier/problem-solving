@@ -30,7 +30,7 @@ https://school.programmers.co.kr/learn/courses/30/lessons/{문제번호}
 예시:
 
 ```text
-[prgms] 완주하지 못한 선수 (42576)
+[prgms] Lv.1 완주하지 못한 선수 (42576)
 ```
 
 ## Notes
