@@ -13,7 +13,7 @@
 ## Platform
 
 - **Programmers (프로그래머스)**
-- **Language:** `Python 3`, `SQL`
+- **Language:** `Python3`, `SQL`
 
 문제는 아래 URL 뒤에 문제 번호를 추가하여 확인 가능합니다.
 
