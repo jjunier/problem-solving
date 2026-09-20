@@ -17,8 +17,14 @@ def solution(n):
     for width in range(4, n + 1):
         cycle = width % 3
         
-        tiling_count[width] = (special_cases[cycle] + tiling_count[width - 1] + 2 * tiling_count[width - 2] + 5 * tiling_count[width - 3])
+        tiling_count[width] = (
+            special_cases[cycle] 
+            + tiling_count[width - 1] 
+            + 2 * tiling_count[width - 2] 
+            + 5 * tiling_count[width - 3])
         
-        special_cases[cycle] += (2 * tiling_count[width - 1] + 2 * tiling_count[width - 2] + 4 * tiling_count[width - 3])
+        special_cases[cycle] += (2 * tiling_count[width - 1] 
+                                 + 2 * tiling_count[width - 2] 
+                                 + 4 * tiling_count[width - 3])
         
     return tiling_count[n] % MOD
